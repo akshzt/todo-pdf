@@ -4,8 +4,20 @@ import models
 import schemas
 from typing import List
 from sqlalchemy.orm import Session
+from PDFUtil import PDF
+import json
+
+# from config.celery_utils import create_celery
 
 Base.metadata.create_all(engine)
+
+
+def create_pdf(todos):
+    pdf = PDF()
+    pdf.add_page()
+    for i in range(0, len(todos)):
+        pdf.cell(0, 10, f"ID: {todos[i].id}  TASK: {todos[i].task}", new_x="LMARGIN", new_y="NEXT")
+    pdf.output("data_pdf.pdf")
 
 
 app = FastAPI()
@@ -26,8 +38,7 @@ def root():
 
 @app.post("/todo", status_code=status.HTTP_201_CREATED)
 def create_todo(todo: schemas.ToDoCreate, session: Session = Depends(get_session)):
-
-    tododb = models.ToDo(task = todo.task)
+    tododb = models.ToDo(task=todo.task)
 
     session.add(tododb)
     session.commit()
@@ -75,5 +86,7 @@ def delete_todo(id: int, session: Session = Depends(get_session)):
 @app.get("/todo", response_model=List[schemas.ToDo])
 def read_todo_list(session: Session = Depends(get_session)):
     todo_list = session.query(models.ToDo).all()
+
+    create_pdf(todo_list)
 
     return todo_list
