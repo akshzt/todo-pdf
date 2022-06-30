@@ -1,3 +1,4 @@
+from os import stat
 from fastapi import FastAPI, status, HTTPException, Depends
 from database import Base, engine, SessionLocal
 import models
@@ -46,7 +47,7 @@ def read_todo(id: int, session: Session = Depends(get_session)):
     return todo
 
 
-@app.put("/todo/{id}")
+@app.put("/todo/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_todo(id: int, task: str, session: Session = Depends(get_session)):
     todo = session.query(models.ToDo).get(id)
     if todo:
