@@ -1,4 +1,4 @@
-## Todo-list Project
+## Complex Todo-list Project
 
 A project for todo list
 
@@ -23,4 +23,5 @@ Stack to be used:
 - PostgreSQL via Docker
 - Redis/RabbitMQ via Docker
 - All DB operations via SQLalchemy
+
 
