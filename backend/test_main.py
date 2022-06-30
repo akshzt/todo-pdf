@@ -1,4 +1,4 @@
-from random import randint, random
+import random
 from main import app
 from fastapi.testclient import TestClient
 
@@ -15,13 +15,20 @@ def test_todo_list():
     #length of the list
     n = (len(get_list.json()))
     print(n)
-    #length of the list after creating a new item
+
+    #all ids
+    id_list = []
+    for items in get_list.json():
+        id_list.append(items["id"])
+
+    #creating new item
     create_task_pl = "hmm new item here bro"
     create_new= client.post("/todo", json={"task":create_task_pl})
     assert create_new.status_code == 201
     after_create = client.get("/todo")
     create_len = len(after_create.json())
     assert create_len == n + 1
+
     #get item by ID
     payload_id = 1;
     response_get_by_id = {"id":1,"task":"this is my first task"}
@@ -31,7 +38,7 @@ def test_todo_list():
     assert get_by_id.json()["task"] == response_get_by_id["task"]
 
     #update by ID
-    update_id_pl = randint(0,n)
+    update_id_pl = random.choice(id_list)
     new_task_pl = "this is an updated task"
     update_by_id = client.put(f"/todo/{update_id_pl}?task={new_task_pl}")
     assert update_by_id.status_code == 202
@@ -40,13 +47,48 @@ def test_todo_list():
 
 
     #delete by ID 
-    delete_id_pl = randint(0,n)
+    delete_id_pl = random.choice(id_list)
     delete_by_id = client.delete(f"/todo/{delete_id_pl}")
     assert delete_by_id.status_code == 204
     after_delete = client.get("/todo")
     delete_len = len(after_delete.json())
     assert delete_len == n
     print(f"Deleted item with the id number {delete_id_pl}")
+
+
+
+#negative testing
+def test_negative():
+
+    #get list fail
+    get_list = client.get("/todo")
+    id_list = []
+
+    for items in get_list.json():
+        id_list.append(items["id"])
+
+    #non-existent id
+    invalid_id = max(id_list) + 1
+
+
+    #invalid get
+    invalid_get = client.get(f"/todo/{invalid_id}")
+    assert invalid_get.status_code == 404
+
+    #invalid create
+    invalid_create = client.post("/todo", json={"invalid_json":"that was not task"})
+    assert invalid_create.status_code == 422
+
+    #invalid update
+    invalid_update = client.put(f"/todo/{invalid_id}?task=negative test task")
+    assert invalid_update.status_code == 404
+    invalid_update_json = client.put(f"/todo/{random.choice(id_list)}?invalid_property=this is not a task")
+    assert invalid_update_json.status_code == 422
+
+    #invalid delete
+    invalid_delete = client.put(f"/todo/{invalid_id}")
+    assert invalid_update.status_code == 404
+
 
 
 
