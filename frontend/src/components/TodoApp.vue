@@ -14,14 +14,12 @@
 <script>
 import GetTodo from './GetTodo.vue';
 import CurrentTodos from './CurrentTodos.vue';
-import CompletedTodos from './CompletedTodos.vue';
 
 export default {
   name: 'TodoApp',
   components: {
     GetTodo,
     CurrentTodos,
-    CompletedTodos
   },
   props: {
     msg: String

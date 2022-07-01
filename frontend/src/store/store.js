@@ -49,9 +49,9 @@ const store = new Vuex.Store({
         removeTodo({commit}, todo){
             commit('REMOVE_TODO', todo)
         },
-        completeTodo({commit}, todo){
-            commit('COMPLETE_TODO', todo)
-        },
+        // completeTodo({commit}, todo){
+        //     commit('COMPLETE_TODO', todo)
+        // },
         clearTodo({commit}){
             commit('CLEAR_TODO')
         }
@@ -60,7 +60,6 @@ const store = new Vuex.Store({
     getters: {
         newTodo: state => state.newTodo,
         todos: state => state.todos.filter((todo) => {return !todo.completed}),
-        completedTodos: state => state.todos.filter((todo) => {return todo.completed})
     }
 
 })
