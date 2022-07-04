@@ -30,12 +30,11 @@ def test_todo_list():
     assert create_len == n + 1
 
     #get item by ID
-    payload_id = 1;
-    response_get_by_id = {"id":1,"task":"this is my first task"}
+    payload_id = create_new.json()["id"];
     get_by_id = client.get(f"/todo/{payload_id}")
     assert get_by_id.status_code == 200
-    assert get_by_id.json()["id"] == response_get_by_id["id"]
-    assert get_by_id.json()["task"] == response_get_by_id["task"]
+    assert get_by_id.json()["id"] == payload_id
+    assert get_by_id.json()["task"] == create_task_pl
 
     #update by ID
     update_id_pl = random.choice(id_list)
