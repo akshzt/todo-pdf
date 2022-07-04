@@ -8,7 +8,7 @@ class PDF(FPDF):
         # Moving cursor to the right:
         self.cell(80)
         # Printing title:
-        self.cell(30, 10, "Saving Data to PDF", border=1, align="C")
+        self.cell(30, 10, "Saving Data to PDF", border=0, align="C")
         # Performing a line break:
         self.ln(20)
 

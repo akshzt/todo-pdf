@@ -1,7 +1,7 @@
 <template>
   <div class="about pa-6">
-    <h1>Download Todos</h1>
-    
+    <h1>Download PDF</h1>
+    <p>Click the below button to download a PDF of your tasks</p>
     <v-btn
       rounded
       color="primary"
