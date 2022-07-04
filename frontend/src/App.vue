@@ -54,12 +54,14 @@
 
 <script>
   export default {
-    data: () => ({ drawer: null,   items: [
-          { title: 'Tasks', icon: 'mdi-format-list-checks', to:"/" },
-          // { title: 'PDF', icon: 'mdi-image', to: "/to" },
-          { title: 'Download PDF', icon: 'mdi-file-document-check', to:"/about" },
-        ],
-        right: null, }),
+    name: 'App',
+    data: () => ({ 
+      drawer: null,   
+      items: [
+        { title: 'Tasks', icon: 'mdi-format-list-checks', to:"/" },
+        { title: 'Download PDF', icon: 'mdi-file-document-check', to:"/about" },
+      ],
+    }),
     
   }
 </script>
