@@ -57,7 +57,7 @@
     data: () => ({ drawer: null,   items: [
           { title: 'Tasks', icon: 'mdi-format-list-checks', to:"/" },
           // { title: 'PDF', icon: 'mdi-image', to: "/to" },
-          { title: 'About', icon: 'mdi-help-box', to:"/about" },
+          { title: 'Download PDF', icon: 'mdi-file-document-check', to:"/about" },
         ],
         right: null, }),
     
