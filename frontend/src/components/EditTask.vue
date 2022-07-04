@@ -29,7 +29,7 @@
               > -->
                 <v-text-field
                   label="Task"
-                  
+                  v-model="newTask"
                 ></v-text-field>
               <!-- </v-col> -->
                 <!-- <v-col
@@ -103,7 +103,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="dialog = false"
+            @click="updateTask(id)"
           >
             Save
           </v-btn>
@@ -114,10 +114,28 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+
+
 export default{
+   props: {
+    id: Number,
+  },
    data: () => ({
     dialog: false,
-  }),
+    newTask: "",
+      }),
+    methods: {
+      updateTask(id) {
+        axios.put(`todo/${id}?task=${this.newTask}`)
+        .then(response=>console.log(response))
+        .catch(error=>console.log(error))
+        this.dialog=false
+        this.$router.go()
+      },
+    }
+
   
 }
 </script>

@@ -39,7 +39,7 @@
             </v-list-item-content>
 
                <v-list-item-action>
-                <EditTaskVue/>
+                <EditTaskVue :id="task.id"/>
           <!-- <v-btn icon
           @click.stop="popupFunc">
             <v-icon color="primary">mdi-pencil</v-icon>
@@ -70,10 +70,9 @@
 <script>
   import EditTaskVue from '@/components/EditTask.vue'
   import axios from 'axios'
-import EditTask from '@/components/EditTask.vue'
   export default {
     name: 'Home',
-    components: { EditTaskVue, EditTask },
+    components: { EditTaskVue },
     data() {
       return {
         // dialog: false,
