@@ -6,12 +6,25 @@ from typing import List
 from sqlalchemy.orm import Session
 from tasks import create_pdf_task
 from fastapi.responses import FileResponse
+import os
+import pathlib
 
 
 Base.metadata.create_all(engine)
 
 
 app = FastAPI()
+
+
+def create_static_folder():
+    try:
+        pathlib.Path(f"{os.getcwd()}/static").mkdir()
+    except:
+        pass
+
+
+create_static_folder()
+create_pdf_task.delay()
 
 
 def get_session():
