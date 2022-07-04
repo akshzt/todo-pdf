@@ -3,7 +3,7 @@
     
     <v-text-field
     v-model="newTaskTitle"
-    @click:append=" addTask"
+    @click:append="addTask"
     @keyup.enter="addTask"
     class="pa-3"
     outlined
@@ -68,10 +68,10 @@
 </template>
 
 <script>
-  import EditTaskVue from '@/components/EditTask.vue'
+  import EditTaskVue from '../components/EditTask.vue'
   import axios from 'axios'
   export default {
-    name: 'Home',
+    name: 'HomeView',
     components: { EditTaskVue },
     data() {
       return {
