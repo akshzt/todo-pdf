@@ -26,7 +26,7 @@ def create_pdf(todos):
     # print(len(todos))
     for i in range(0, len(todos)):
         pdf.cell(0, 10, f"ID: {todos[i][0]}  TASK: {todos[i][1]}", new_x="LMARGIN", new_y="NEXT")
-    pdf.output("data_pdf.pdf")
+    pdf.output("static/data_pdf.pdf")
 
 
 create_pdf(result)

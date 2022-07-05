@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app.test.js Expect snapshot to match 1`] = `
+"<div data-app=\\"true\\" class=\\"v-application v-application--is-ltr theme--light\\" id=\\"inspire\\" items=\\"\\">
+  <div class=\\"v-application--wrap\\">
+    <nav class=\\"v-navigation-drawer v-navigation-drawer--close v-navigation-drawer--fixed v-navigation-drawer--is-mobile theme--light\\" style=\\"height: 100vh; top: 0px; transform: translateX(-100%); width: 256px;\\">
+      <div class=\\"v-navigation-drawer__content\\">
+        <div tabindex=\\"-1\\" class=\\"v-list-item theme--light\\">
+          <div class=\\"v-list-item__content\\">
+            <div class=\\"v-list-item__title text-h6\\">
+              To Do List
+            </div>
+            <div class=\\"v-list-item__subtitle\\">
+              Built with Vue + Vuetify
+            </div>
+          </div>
+        </div>
+        <hr role=\\"separator\\" aria-orientation=\\"horizontal\\" class=\\"v-divider theme--light\\">
+        <div class=\\"v-list v-sheet theme--light v-list--dense v-list--nav\\">
+          <router-link tabindex=\\"0\\" class=\\"v-list-item v-list-item--link theme--light\\">
+            <div class=\\"v-list-item__icon\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-format-list-checks theme--light\\"></i></div>
+            <div class=\\"v-list-item__content\\">
+              <div class=\\"v-list-item__title\\">Tasks</div>
+            </div>
+          </router-link>
+          <router-link tabindex=\\"0\\" class=\\"v-list-item v-list-item--link theme--light\\">
+            <div class=\\"v-list-item__icon\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-file-document-check theme--light\\"></i></div>
+            <div class=\\"v-list-item__content\\">
+              <div class=\\"v-list-item__title\\">Download PDF</div>
+            </div>
+          </router-link>
+        </div>
+      </div>
+      <div class=\\"v-navigation-drawer__border\\"></div>
+    </nav>
+    <header class=\\"v-sheet theme--light v-toolbar v-app-bar v-app-bar--fixed\\" style=\\"height: 64px; margin-top: 0px; transform: translateY(0px); left: 0px; right: 0px;\\">
+      <div class=\\"v-toolbar__content\\" style=\\"height: 64px;\\"><button type=\\"button\\" class=\\"v-app-bar__nav-icon v-btn v-btn--icon v-btn--round theme--light v-size--default\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-menu theme--light\\"></i></span></button>
+        <div class=\\"v-toolbar__title\\">Application</div>
+      </div>
+    </header>
+    <main class=\\"v-main\\" style=\\"padding: 64px 0px 0px 0px;\\">
+      <div class=\\"v-main__wrap\\">
+        <router-view></router-view>
+      </div>
+    </main>
+  </div>
+</div>"
+`;

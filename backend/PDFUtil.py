@@ -10,6 +10,7 @@ class PDF(FPDF):
         # Printing title:
 
         self.cell(30, 10, "List of your tasks", border=0, align="C")
+
         # Performing a line break:
         self.ln(20)
 

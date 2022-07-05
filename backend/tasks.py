@@ -1,4 +1,3 @@
-import time
 import psycopg2
 from celery import Celery
 import os
@@ -22,8 +21,8 @@ def create_pdf(todos):
     pdf.add_page()
     # print(len(todos))
     for i in range(0, len(todos)):
-        pdf.cell(0, 10, f"ID: {todos[i][0]}  TASK: {todos[i][1]}", new_x="LMARGIN", new_y="NEXT")
-    pdf.output("data_pdf.pdf")
+        pdf.cell(0, 10, f"ID: {todos[i][0]}  Task: {todos[i][1]}", new_x="LMARGIN", new_y="NEXT")
+    pdf.output("static/data_pdf.pdf")
 
 
 @celery.task(name='create_pdf_task')
@@ -34,7 +33,5 @@ def create_pdf_task():
     conn.commit()
 
     create_pdf(result)
-
-    # time.sleep(10)
 
     return True

@@ -3,8 +3,10 @@
     
     <v-text-field
     v-model="newTaskTitle"
+    
     @click:append="$store.dispatch(`addTask`, $store.getters.newValue)"
     @keyup.enter="$store.dispatch(`addTask`, $store.getters.newValue)"
+
     class="pa-3"
     outlined
     label="Add task"
@@ -68,10 +70,10 @@
 </template>
 
 <script>
-  import EditTaskVue from '@/components/EditTask.vue'
+  import EditTaskVue from '../components/EditTask.vue'
   import axios from 'axios'
   export default {
-    name: 'Home',
+    name: 'HomeView',
     components: { EditTaskVue },
     computed: {
       newTaskTitle: {
