@@ -21,15 +21,12 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-
                 <v-text-field
                   label="Task"
                   v-model="editTask"
                   @keyup.enter="updateTask(id,editTask)"
-                ></v-text-field>
-              
+                ></v-text-field>    
           </v-container>
-
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -77,8 +74,6 @@ export default{
         this.$store.dispatch(`updateTask`,{'id':id,'task':editTask})
         this.dialog=false
       },
-    }
-
-  
+    } 
 }
 </script>

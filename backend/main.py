@@ -79,6 +79,19 @@ def update_todo(id: int, task: str, session: Session = Depends(get_session)):
     create_pdf_task.delay()
     return todo
 
+@app.put("/todo/{id}/done", status_code=status.HTTP_202_ACCEPTED)
+def update_todo(id: int, done: bool, session: Session = Depends(get_session)):
+    todo = session.query(models.ToDo).get(id)
+    if todo:
+        todo.done = done
+        session.commit()
+
+    if not todo:
+        raise HTTPException(status_code=404, detail=f"todo with item id {id} not found")
+    create_pdf_task.delay()
+    return todo
+   
+
 
 @app.delete("/todo/{id}", status_code=status.HTTP_204_NO_CONTENT, response_class=Response)
 def delete_todo(id: int, session: Session = Depends(get_session)):

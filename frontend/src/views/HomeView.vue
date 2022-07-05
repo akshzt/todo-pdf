@@ -23,19 +23,23 @@
     <div
      v-for="task in $store.getters.allTasks"
         :key="task.id">
-      <v-list-item  
+      <v-list-item
+      @click="$store.dispatch(`updateDone`,Object.assign(task,{'done':!task.done}))" 
+      :class="{'teal darken-4': task.done}" 
       >
         <template v-slot:default>
                   <v-list-item-action>
               <v-checkbox
-                
+                :input-value="task.done"
                 color="primary"
               ></v-checkbox>
             
             </v-list-item-action>
 
             <v-list-item-content>
+              <v-list-item-title :class="{'text-decoration-line-through' : task.done }">
                 {{task.task}}
+              </v-list-item-title>
             </v-list-item-content>
 
                <v-list-item-action>
@@ -65,7 +69,6 @@
 
 <script>
   import EditTaskVue from '../components/EditTask.vue'
-  import axios from 'axios'
   export default {
     name: 'HomeView',
     components: { EditTaskVue },
@@ -77,35 +80,6 @@
           set (newValue) {
             this.$store.dispatch('setNewTask', newValue)
           },
-      }
-    },
-    data() {
-      return {
-        list: null,
-      }
-    },
-    methods: {
-      popupFunc(){
-        console.log(this.list)
-      },
-      addTask(){
-        let newTask = {
-          task: this.newTaskTitle,
-        } 
-
-        axios.post(`/todo`,newTask).then(response => (console.log(response)))
-        .catch(error=>console.log(error))
-        this.newTaskTitle=""
-        this.$router.go()
-      },
-      doneTask(id){
-        let task = this.tasks.filter(task=> task.id === id)[0]
-        task.done = !task.done
-      },
-      deleteTask(id){
-        axios.delete(`/todo/${id}`).then(response => (console.log(response)))
-        .catch(error=> console.log(error))
-        this.$router.go()
       }
     },
     mounted () {
