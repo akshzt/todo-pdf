@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, HTTPException, Depends
+from fastapi import FastAPI, status, HTTPException, Depends, Response
 from database import Base, engine, SessionLocal
 import models
 import schemas
@@ -80,7 +80,7 @@ def update_todo(id: int, task: str, session: Session = Depends(get_session)):
     return todo
 
 
-@app.delete("/todo/{id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/todo/{id}", status_code=status.HTTP_204_NO_CONTENT, response_class=Response)
 def delete_todo(id: int, session: Session = Depends(get_session)):
     todo = session.query(models.ToDo).get(id)
 
