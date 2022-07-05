@@ -71,7 +71,6 @@
 
 <script>
   import EditTaskVue from '../components/EditTask.vue'
-  import axios from 'axios'
   export default {
     name: 'HomeView',
     components: { EditTaskVue },
@@ -83,47 +82,6 @@
           set (newValue) {
             this.$store.dispatch('setNewTask', newValue)
           },
-      }
-    },
-    data() {
-      return {
-        // dialog: false,
-        list: null,
-        // newTaskTitle:'',
-       
-      }
-    },
-    methods: {
-
-
-      popupFunc(){
-        console.log(this.list)
-        /*Your logic goes here*/
-      
-      },
-      addTask(){
-        let newTask = {
-          task: this.newTaskTitle,
-        } 
-
-        axios.post(`/todo`,newTask).then(response => (console.log(response)))
-        .catch(error=>console.log(error))
-        this.newTaskTitle=""
-        this.$router.go()
-
-      
-  },
-
-      doneTask(id){
-        let task = this.tasks.filter(task=> task.id === id)[0]
-        task.done = !task.done
-},
-      deleteTask(id){
-        // this.tasks = this.tasks.filter(task => task.id !== id)
-        axios.delete(`/todo/${id}`).then(response => (console.log(response)))
-        .catch(error=> console.log(error))
-        this.$router.go()
-
       }
     },
     mounted () {
