@@ -4,11 +4,13 @@ from fpdf import FPDF
 class PDF(FPDF):
     def header(self):
         # Setting font: helvetica bold 15
-        self.set_font("helvetica", "B", 15)
+        self.set_font("times", "", 15)
         # Moving cursor to the right:
         self.cell(80)
         # Printing title:
-        self.cell(30, 10, "Saving Data to PDF", border=0, align="C")
+
+        self.cell(30, 10, "List of your tasks", border=0, align="C")
+
         # Performing a line break:
         self.ln(20)
 

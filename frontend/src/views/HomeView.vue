@@ -3,8 +3,10 @@
     
     <v-text-field
     v-model="newTaskTitle"
-    @click:append="addTask"
-    @keyup.enter="addTask"
+    
+    @click:append="$store.dispatch(`addTask`, $store.getters.newValue)"
+    @keyup.enter="$store.dispatch(`addTask`, $store.getters.newValue)"
+
     class="pa-3"
     outlined
     label="Add task"
@@ -19,9 +21,9 @@
     >
  
     <div
-     v-for="task in list"
+     v-for="task in $store.getters.allTasks"
         :key="task.id">
-      <v-list-item 
+      <v-list-item  
       >
         <template v-slot:default>
                   <v-list-item-action>
@@ -48,7 +50,7 @@
 
             <v-list-item-action>
           <v-btn icon
-          @click.stop="deleteTask(task.id)">
+          @click.stop="$store.dispatch(`removeTasks`,task.id)">
             <v-icon color="primary">mdi-delete</v-icon>
           </v-btn>
         </v-list-item-action>
@@ -73,36 +75,22 @@
   export default {
     name: 'HomeView',
     components: { EditTaskVue },
+    computed: {
+      newTaskTitle: {
+          get () {
+            return this.$store.state.newTask
+          },
+          set (newValue) {
+            this.$store.dispatch('setNewTask', newValue)
+          },
+      }
+    },
     data() {
       return {
         // dialog: false,
         list: null,
-        newTaskTitle:'',
-        tasks: [{
-          id:1,
-          task: "Eat",
-          done: false,
-
-        },
-        {
-          id:2,
-          task: "Sleep",
-          done: false,
-
-        },
-        {
-          id:3,
-          task: "Code",
-          done: false,
-
-        },
-        {
-          id:4,
-          task: "Repeat",
-          done: false,
-
-        },
-        ]
+        // newTaskTitle:'',
+       
       }
     },
     methods: {
@@ -139,10 +127,11 @@
       }
     },
     mounted () {
-        axios.get(`/todo`).then(response => (
-        // console.log(response.data)
-        this.list = response.data
-        )).catch(error => console.log(error))
+        // axios.get(`/todo`).then(response => (
+        // // console.log(response.data)
+        // this.list = response.data
+        // )).catch(error => console.log(error))
+      this.$store.dispatch("getTasks")
     }
   }
 </script>
