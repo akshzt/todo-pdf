@@ -29,7 +29,8 @@
               > -->
                 <v-text-field
                   label="Task"
-                  v-model="newTask"
+                  v-model="editTask"
+                  @keyup.enter="updateTask(id,editTask)"
                 ></v-text-field>
               <!-- </v-col> -->
                 <!-- <v-col
@@ -103,7 +104,7 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="updateTask(id)"
+            @click="updateTask(id,editTask)"
           >
             Save
           </v-btn>
@@ -122,17 +123,24 @@ export default{
    props: {
     id: Number,
   },
+   computed: {
+      editTask: {
+          get () {
+            return this.$store.state.editTask
+          },
+          set (newValue) {
+            this.$store.dispatch('editTask', newValue)
+          },
+      }
+    },
    data: () => ({
     dialog: false,
     newTask: "",
       }),
     methods: {
-      updateTask(id) {
-        axios.put(`todo/${id}?task=${this.newTask}`)
-        .then(response=>console.log(response))
-        .catch(error=>console.log(error))
+      updateTask(id, editTask) {
+        this.$store.dispatch(`updateTask`,{'id':id,'task':editTask})
         this.dialog=false
-        this.$router.go()
       },
     }
 
