@@ -26,4 +26,4 @@ describe('Mounted App', () => {
       expect(wrapper.exists()).toBe(true);
     });
 
-  });
+});

@@ -21,7 +21,6 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-          
                 <v-text-field
                   label="Task"
                   v-model="editTask"

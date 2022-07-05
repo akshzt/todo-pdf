@@ -44,7 +44,6 @@
 
                <v-list-item-action>
                 <EditTaskVue :id="task.id"/>
-        
         </v-list-item-action>
 
             <v-list-item-action>
@@ -84,10 +83,6 @@
       }
     },
     mounted () {
-        // axios.get(`/todo`).then(response => (
-        // // console.log(response.data)
-        // this.list = response.data
-        // )).catch(error => console.log(error))
       this.$store.dispatch("getTasks")
     }
   }
