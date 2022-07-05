@@ -1,10 +1,10 @@
 <template>
   <div class="about pa-6">
     <h1>{{heading}}</h1>
-    <p>Click the below button to download a PDF of your tasks</p>
+    <p>Click the button below to download a PDF of your tasks</p>
     <v-btn
       rounded
-      color="primary"
+      color="teal darken-4"
       dark
       @click="getPdf"
     >
@@ -19,7 +19,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      heading: "Downlaod PDF"
+      heading: "Download PDF"
     }
   },
   methods: {

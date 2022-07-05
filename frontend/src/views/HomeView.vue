@@ -23,29 +23,28 @@
     <div
      v-for="task in $store.getters.allTasks"
         :key="task.id">
-      <v-list-item  
+      <v-list-item
+      @click="$store.dispatch(`updateDone`,Object.assign(task,{'done':!task.done}))" 
+      :class="{'teal darken-4': task.done}" 
       >
         <template v-slot:default>
                   <v-list-item-action>
               <v-checkbox
-                
+                :input-value="task.done"
                 color="primary"
               ></v-checkbox>
             
             </v-list-item-action>
 
             <v-list-item-content>
-              <!-- <v-list-item-title :class="{'text-decoration-line-through' : task.done }"> -->
+              <v-list-item-title :class="{'text-decoration-line-through' : task.done }">
                 {{task.task}}
-              <!-- </v-list-item-title> -->
+              </v-list-item-title>
             </v-list-item-content>
 
                <v-list-item-action>
                 <EditTaskVue :id="task.id"/>
-          <!-- <v-btn icon
-          @click.stop="popupFunc">
-            <v-icon color="primary">mdi-pencil</v-icon>
-          </v-btn> -->
+        
         </v-list-item-action>
 
             <v-list-item-action>

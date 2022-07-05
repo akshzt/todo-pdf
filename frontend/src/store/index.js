@@ -61,6 +61,15 @@ const store = new Vuex.Store({
     editTask({commit}, newValue) {
         commit("editTask", newValue)
     },
+    updateDone({commit}, payload) {
+        axios.put(`todo/${payload.id}/done?done=${payload.done}`)
+        .then(response=>{
+            console.log('done changed to',response.data.done, response.data)
+            commit("updateDone",response.data)
+        })
+        .catch(error=>console.log(error))
+
+    }
 },
     mutations: {
         getTasks (state, todo) {
@@ -73,14 +82,18 @@ const store = new Vuex.Store({
             state.newTask = newValue
         },
         addTask(state, newVal) {
-             state.tasks.push(newVal)
+             state.tasks.unshift(newVal)
         },
         editTask(state, newValue) {
             state.editTask = newValue
         },
         updateTask(state, payload) {
             const index = state.tasks.findIndex(todo => todo.id === payload.id);
-            state.tasks.splice(index,1,{'id':payload.id,'task':payload.task})
+            state.tasks.splice(index,1,{'task':payload.task,})
+        },
+        updateDone(state, payload) {
+            const index = state.tasks.findIndex(todo => todo.id === payload.id);
+            state.tasks.splice(index,1,payload)
         }
     }
 })
