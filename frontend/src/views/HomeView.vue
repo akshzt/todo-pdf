@@ -35,17 +35,11 @@
             </v-list-item-action>
 
             <v-list-item-content>
-              <!-- <v-list-item-title :class="{'text-decoration-line-through' : task.done }"> -->
                 {{task.task}}
-              <!-- </v-list-item-title> -->
             </v-list-item-content>
 
                <v-list-item-action>
                 <EditTaskVue :id="task.id"/>
-          <!-- <v-btn icon
-          @click.stop="popupFunc">
-            <v-icon color="primary">mdi-pencil</v-icon>
-          </v-btn> -->
         </v-list-item-action>
 
             <v-list-item-action>
@@ -87,19 +81,12 @@
     },
     data() {
       return {
-        // dialog: false,
         list: null,
-        // newTaskTitle:'',
-       
       }
     },
     methods: {
-
-
       popupFunc(){
         console.log(this.list)
-        /*Your logic goes here*/
-      
       },
       addTask(){
         let newTask = {
@@ -110,27 +97,18 @@
         .catch(error=>console.log(error))
         this.newTaskTitle=""
         this.$router.go()
-
-      
-  },
-
+      },
       doneTask(id){
         let task = this.tasks.filter(task=> task.id === id)[0]
         task.done = !task.done
-},
+      },
       deleteTask(id){
-        // this.tasks = this.tasks.filter(task => task.id !== id)
         axios.delete(`/todo/${id}`).then(response => (console.log(response)))
         .catch(error=> console.log(error))
         this.$router.go()
-
       }
     },
     mounted () {
-        // axios.get(`/todo`).then(response => (
-        // // console.log(response.data)
-        // this.list = response.data
-        // )).catch(error => console.log(error))
       this.$store.dispatch("getTasks")
     }
   }
